@@ -38,6 +38,14 @@ const Graph = (adjFn) => {
     return marked
   }
 
+  const dfs = (src, cb, options = {}) => {
+    traverse(src, cb, options)
+  }
+
+  const bfs = (src, cb, options = {}) => {
+    traverse(src, cb, { ...options, method: 'bfs' })
+  }
+
   // check cycle with dfs
   const cycle = (src, cb) => {
     let hasCycle = false
@@ -52,7 +60,8 @@ const Graph = (adjFn) => {
   }
 
   return {
-    neighbours, traverse,
+    neighbours, 
+    traverse, dfs, bfs,
     cycle,
   }
 }
