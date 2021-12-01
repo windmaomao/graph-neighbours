@@ -35,3 +35,19 @@ test('can perform bfs traversal', () => {
   g.bfs(0, v => { res.push(v) })
   expect(`${res}`).toBe('0,1,3,2,4,5')
 })
+
+test.skip('can detect cycle', () => {
+  let hasCycle = false
+  const g = Graph({ 0: [1, 3], 1: [2], 3: [4], 4: [5] })
+  g.traverse(0, null, {
+    nextCb: (v, p, visited) => {
+      if (visited) {
+        if (v != p) {
+          console.log(v, p)
+          hasCycle = true
+        }
+      }
+    }
+  })
+  expect(hasCycle).toBe(false)
+})

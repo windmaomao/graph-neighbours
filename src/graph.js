@@ -46,24 +46,7 @@ const Graph = (adjFn) => {
     traverse(src, cb, { ...options, method: 'bfs' })
   }
 
-  // check cycle with dfs
-  const cycle = (src, cb) => {
-    let hasCycle = false
-    traverse(src, cb, {
-      nextCb: (v, p, visited) => {
-        if (visited) {
-          if (v != p) hasCycle = true
-        }
-      }
-    })
-    return hasCycle
-  }
-
-  return {
-    neighbours, 
-    traverse, dfs, bfs,
-    cycle,
-  }
+  return { neighbours, traverse, dfs, bfs }
 }
 
 module.exports = Graph
