@@ -1,0 +1,23 @@
+{
+  "name": "graph-neighbours",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/graph-neighbours.umd.js",
+  "browser": "dist/graph-neighbours.umd.js",
+  "browserExport": "GraphNeighbours",
+  "module": "dist/graph-neighbours.es.js",
+  "scripts": {
+    "build": "rollup -c",
+    "test": "jest --watchAll"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "jest": "^27.3.1",
+    "rollup": "^2.59.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0"
+  },
+  "author": "Fang Jin",
+  "license": "ISC"
+}
