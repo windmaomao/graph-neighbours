@@ -1,1 +1,1 @@
-const a = 1
+module.exports = require('./graph')
