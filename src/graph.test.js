@@ -36,6 +36,26 @@ test('can perform bfs traversal', () => {
   expect(`${res}`).toBe('0,1,3,2,4,5')
 })
 
+test('can block traversal', () => {
+  const g = Graph({ 0: [1, 3], 1: [2], 3: [4], 4: [5] })
+  const res = []
+  g.dfs(0, v => { res.push(v) }, {
+    canVisit: (m, next) => {
+      return !m[next] && next != 3
+    }
+  })
+  expect(`${res}`).toBe('0,1,2')
+})
+
+test('can stop traversal if goal reached', () => {
+  const g = Graph({ 0: [1, 3], 1: [2], 3: [4], 4: [5] })
+  const res = []
+  g.dfs(0, v => { res.push(v) }, {
+    shouldStop: () => res.length == 3
+  })
+  expect(`${res}`).toBe('0,3,4')
+})
+
 test.skip('can detect cycle', () => {
   let hasCycle = false
   const g = Graph({ 0: [1, 3], 1: [2], 3: [4], 4: [5] })
