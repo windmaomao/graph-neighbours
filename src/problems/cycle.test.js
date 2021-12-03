@@ -3,8 +3,9 @@ import Dfs from '../Dfs'
 const hasCycle = (m) => {
   const marked = []
   let cycle = false
+  const adjs = v => m[v] || []
 
-  Dfs((v, adjs, next, params) => {
+  Dfs((v, next, params) => {
     marked[v] = true
     adjs(v).forEach(u => {
       if (!marked[u]) {

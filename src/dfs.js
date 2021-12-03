@@ -1,11 +1,6 @@
-const Dfs = (visit, adjFn) => {
-  const neighbours = node => (
-    typeof adjFn === 'function' 
-      ? adjFn(node) : adjFn[node]
-  ) || []
-
+const Dfs = (visit) => {
   const fn = (src, ...others) => {
-    return visit(src, neighbours, fn, others)
+    return visit(src, fn, others)
   }
 
   return fn

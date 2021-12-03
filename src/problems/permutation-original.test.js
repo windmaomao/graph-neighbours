@@ -5,7 +5,7 @@ const permute = (array) => {
   const indexes = new Array(n).fill(0).map((_, i) => i)
   const res = []
 
-  Dfs((curr, _, visit) => {
+  Dfs((curr, visit) => {
     if (curr.length == n) {
       res.push([...curr])
       return

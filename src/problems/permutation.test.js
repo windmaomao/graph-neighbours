@@ -6,7 +6,7 @@ const permute = (array) => {
   const visited = []
   const res = []
 
-  Dfs((i, _, visit) => {
+  Dfs((i, visit) => {
     if (i >= 0) {
       visited.push(i)
       if (visited.length == n) {
