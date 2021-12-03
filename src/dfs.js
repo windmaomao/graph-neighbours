@@ -1,29 +1,14 @@
-const Dfs = (adjFn) => {
+const Dfs = (adjFn, visit) => {
   const neighbours = node => (
     typeof adjFn === 'function' 
       ? adjFn(node) : adjFn[node]
   ) || []
 
-  const traverse = (src, {
-    step, pick, back
-  } = {}) => {
-    const dfs = (node) => {
-      const canContinue = step(node)
-
-      if (canContinue !== false) {
-        neighbours(node).forEach(next => {
-          if (!pick(next, node)) return
-          dfs(next)
-        })
-      }
-
-      back && back()
-    }
-
-    dfs(src)
+  const fn = (src) => {
+    return visit(src, neighbours, fn)
   }
 
-  return traverse
+  return fn
 }
 
 module.exports = Dfs
