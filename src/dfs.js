@@ -1,4 +1,4 @@
-const Dfs = (adjFn, visit) => {
+const Dfs = (visit, adjFn) => {
   const neighbours = node => (
     typeof adjFn === 'function' 
       ? adjFn(node) : adjFn[node]
