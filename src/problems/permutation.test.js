@@ -23,24 +23,23 @@ import Dfs from '../Dfs'
 const permute = (array) => {
   const n = array.length
   const indexes = new Array(n).fill(0).map((_, i) => i)
-  const dfs = Dfs(() => indexes)
-
   const visited = []
   const res = []
 
-  dfs(-1, {
-    step: (i) => { 
-      if (i >= 0) {
-        visited.push(i)
-        if (visited.length === n) {
-          res.push([...visited])
-          return false
-        }
+  Dfs((i, adjs, visit) => {
+    if (i >= 0) {
+      visited.push(i)
+      if (visited.length == n) {
+        res.push([...visited])
       }
-    },
-    pick: (i) => visited.indexOf(i) < 0,
-    back: () => { visited.pop() },
-  })
+    }
+    if (visited.length < n) {
+      adjs(i).forEach(j => {
+        if (visited.indexOf(j) < 0) visit(j)
+      })
+    }
+    visited.pop()
+  }, () => indexes)(-1)
   
   return res
 }
