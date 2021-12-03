@@ -1,4 +1,4 @@
-import Dfs from '../../Dfs'
+import Dfs from '../Dfs'
 
 const hasCycle = (adj) => {
   const marked = []

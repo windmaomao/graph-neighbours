@@ -1,4 +1,4 @@
-import Dfs from '../../Dfs'
+import Dfs from '../Dfs'
 
 const hasSingleCycle = (arr) => {
   const n = arr.length

@@ -1,22 +1,21 @@
 const Dfs = (adjFn) => {
-  const neighbours = node =>
-    (typeof adjFn === 'function'
-      ? adjFn(node)
-      : adjFn[node]
-    ) || []
+  const neighbours = node => (
+    typeof adjFn === 'function' 
+      ? adjFn(node) : adjFn[node]
+  ) || []
 
   const traverse = (src, {
-    step, pick, goal, back
+    step, pick, back
   } = {}) => {
     const dfs = (node) => {
-      if (goal && goal(node)) return
+      const canContinue = step(node)
 
-      step && step(node)
-
-      neighbours(node).forEach(next => {
-        if (!pick(next, node)) return
-        dfs(next)
-      })
+      if (canContinue !== false) {
+        neighbours(node).forEach(next => {
+          if (!pick(next, node)) return
+          dfs(next)
+        })
+      }
 
       back && back()
     }
