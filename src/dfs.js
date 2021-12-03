@@ -4,8 +4,8 @@ const Dfs = (visit, adjFn) => {
       ? adjFn(node) : adjFn[node]
   ) || []
 
-  const fn = (src) => {
-    return visit(src, neighbours, fn)
+  const fn = (src, ...others) => {
+    return visit(src, neighbours, fn, others)
   }
 
   return fn

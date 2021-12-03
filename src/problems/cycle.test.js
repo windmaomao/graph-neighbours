@@ -1,22 +1,20 @@
 import Dfs from '../Dfs'
 
-const hasCycle = (adj) => {
+const hasCycle = (m) => {
   const marked = []
   let cycle = false
-  const dfs = Dfs(adj)
 
-  dfs(0, {
-    step: (v) => {
-      marked[v] = true
-    },
-    pick: (v, p) => {
-      const visited = !!marked[v]
-      if (visited && v != p) {
+  Dfs((v, adjs, next, params) => {
+    marked[v] = true
+    adjs(v).forEach(u => {
+      if (!marked[u]) {
+        next(u, v)
+      } else if (v != params[0]) {
         cycle = true
       }
-      return !visited
-    }
-  })
+    })
+    return cycle
+  }, m)(0)
 
   return cycle
 }
