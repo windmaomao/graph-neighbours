@@ -14,8 +14,7 @@ const hasCycle = (m) => {
         cycle = true
       }
     })
-    return cycle
-  }, m)(0)
+  })(0)
 
   return cycle
 }
