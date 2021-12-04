@@ -13,21 +13,20 @@ const hasSingleCycle = (arr) => {
 
   const marked = {}
   const visited = []
-  const dfs = Dfs(i => [next(i)])
-  dfs(0, {
-    step: (i) => { 
-      visited.push(i)
-      marked[i] = true
-    },
-    pick: (i) => !marked[i],
-    goal: (i) => !!marked[i],
-  })
+
+  Dfs((i, visit) => {
+    visited.push(i)
+    marked[i] = true
+    
+    const j = next(i)
+    if (!marked[j]) visit(j)
+  })(0)
 
   return (visited.length === n )
     && (next(visited[n - 1]) === 0)
 }
 
-test('has single cycle', () => {
+test.only('has single cycle', () => {
   const arr = [2, 3, 1, -4, -4, 2]
   expect(hasSingleCycle(arr)).toBe(true)
 })
