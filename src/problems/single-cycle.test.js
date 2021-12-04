@@ -26,7 +26,7 @@ const hasSingleCycle = (arr) => {
     && (next(visited[n - 1]) === 0)
 }
 
-test.only('has single cycle', () => {
+test('has single cycle', () => {
   const arr = [2, 3, 1, -4, -4, 2]
   expect(hasSingleCycle(arr)).toBe(true)
 })
