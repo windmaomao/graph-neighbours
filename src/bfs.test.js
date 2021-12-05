@@ -1,4 +1,4 @@
-import Bfs from './Bfs'
+import Bfs from './bfs'
 
 test('bfs simple traverse', () => {
   const edges = { 0: [1, 2, 3], 2: [4], 4: [5] }
